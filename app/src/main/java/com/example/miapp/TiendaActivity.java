@@ -1,28 +1,40 @@
 package com.example.miapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class TiendaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int[] personajes={R.drawable.nasus_0};
-        String[] nombres={"Nasus"};
-        String[] posiciones={"Top"};
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tienda);
 
         setSupportActionBar(findViewById(R.id.labarra_tienda));
 
-        ListView simpsons= (ListView) findViewById(R.id.laLista);
-        AdaptadorListView eladap= new AdaptadorListView(getApplicationContext(),nombres,personajes,posiciones);
-        simpsons.setAdapter(eladap);
+        RecyclerView lalista= findViewById(R.id.elreciclerview);
+
+        int[] personajes= {R.drawable.nasus_0, R.drawable.maokai, R.drawable.ahri, R.drawable.vayne, R.drawable.lulu};
+        String[] nombres={"Nasus", "Maokai", "Ahri", "Vayne", "Lulu"};
+        String[] posiciones={"Top", "Jungla", "Mid", "Adc", "Support"};
+
+        LinearLayoutManager elLayoutLineal= new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        lalista.setLayoutManager(elLayoutLineal);
+
+        ElAdaptadorRecycler eladaptador = new ElAdaptadorRecycler(nombres, posiciones, personajes);
+        lalista.setAdapter(eladaptador);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
