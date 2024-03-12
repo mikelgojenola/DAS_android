@@ -2,6 +2,8 @@ package com.example.miapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +16,9 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class TiendaActivity extends AppCompatActivity {
+public class TiendaActivity extends AppCompatActivity implements DialogoTienda.ListenerdelDialogo{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class TiendaActivity extends AppCompatActivity {
 
         ElAdaptadorRecycler eladaptador = new ElAdaptadorRecycler(nombres, posiciones, personajes, precios);
         lalista.setAdapter(eladaptador);
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,5 +63,21 @@ public class TiendaActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public void alpulsarSI() {
+
+    }
+    @Override
+    public void alpulsarNO() {
+
+    }
+
+    public void dialogoComprar(){
+        DialogFragment dialogoalerta= new DialogoTienda();
+        dialogoalerta.show(getSupportFragmentManager(), "dialogComprar");
     }
 }
