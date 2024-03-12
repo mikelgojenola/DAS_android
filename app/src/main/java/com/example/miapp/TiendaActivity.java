@@ -29,11 +29,12 @@ public class TiendaActivity extends AppCompatActivity {
         int[] personajes= {R.drawable.nasus_0, R.drawable.maokai, R.drawable.ahri, R.drawable.vayne, R.drawable.lulu};
         String[] nombres={"Nasus", "Maokai", "Ahri", "Vayne", "Lulu"};
         String[] posiciones={"Top", "Jungla", "Mid", "Adc", "Support"};
+        int[] precios={50,50,50,50,50};
 
         LinearLayoutManager elLayoutLineal= new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         lalista.setLayoutManager(elLayoutLineal);
 
-        ElAdaptadorRecycler eladaptador = new ElAdaptadorRecycler(nombres, posiciones, personajes);
+        ElAdaptadorRecycler eladaptador = new ElAdaptadorRecycler(nombres, posiciones, personajes, precios);
         lalista.setAdapter(eladaptador);
     }
 
