@@ -1,5 +1,6 @@
 package com.example.miapp;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +16,19 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElViewHolder> {
     private int[] lasimagenes;
     private int[] losprecios;
     private boolean[] seleccionados = {false, false, false, false, false};
-    public ElAdaptadorRecycler (String[] nombres, String[] posiciones, int[] imagenes, int[] precios)
+    private Context contexto;
+    public ElAdaptadorRecycler (String[] nombres, String[] posiciones, int[] imagenes, int[] precios, Context pcontext)
     {
         losnombres=nombres;
         lasposiciones=posiciones;
         lasimagenes=imagenes;
         losprecios=precios;
+        contexto = pcontext;
     }
 
     public ElViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View elLayoutDeCadaItem= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_tienda,null);
-        ElViewHolder evh = new ElViewHolder(elLayoutDeCadaItem);
+        ElViewHolder evh = new ElViewHolder(elLayoutDeCadaItem, contexto);
         evh.seleccion = seleccionados;
         return evh;
     }
@@ -41,4 +44,9 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElViewHolder> {
     public int getItemCount() {
         return losnombres.length;
     }
+
+    /*public void eliminarElemento(int posicion) {
+        elementos.remove(posicion);
+        notifyItemRemoved(posicion);
+    }*/
 }
