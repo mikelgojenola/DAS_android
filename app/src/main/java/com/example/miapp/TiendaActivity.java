@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -35,13 +36,17 @@ public class TiendaActivity extends AppCompatActivity implements DialogoTienda.L
         ArrayList<Integer> personajes= new ArrayList<Integer>(Arrays.asList(listaP));
         ArrayList<String> nombres= new ArrayList<String>();
         ArrayList<String> posiciones= new ArrayList<String>();
-        ArrayList<Integer> precios= new ArrayList<Integer>();
+        ArrayList<String> precios= new ArrayList<String>();
+
 
         for (int i = 0; i<campeones.size(); i++){
+            nombres.add(campeones.get(i).getNombre());
+            posiciones.add(campeones.get(i).getPosicion());
             if(!campeones.get(i).estaComprado()) {
-                nombres.add(campeones.get(i).getNombre());
-                posiciones.add(campeones.get(i).getPosicion());
-                precios.add(campeones.get(i).getPrecio());
+                precios.add(String.valueOf(campeones.get(i).getPrecio()));
+            }
+            else{
+                precios.add("COMPRADO");
             }
         }
 
@@ -66,7 +71,10 @@ public class TiendaActivity extends AppCompatActivity implements DialogoTienda.L
 
         }
         else if(id == R.id.opcion_menu){
-
+            Intent i = new Intent (this, MainActivity.class);
+            /*i.putExtra("nombre1",valor);
+            i.putExtra("nombre2", valor2);*/
+            startActivity(i);
         }
         else if(id == R.id.opcion_pers){
 

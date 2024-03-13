@@ -15,7 +15,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class AdminDB extends miBD{
-
     public AdminDB(@Nullable Context context, int version) {
         super(context, version);
     }
@@ -68,12 +67,32 @@ public class AdminDB extends miBD{
         return listaC;
     }
 
-    public void comprarCampeon(String n){
-        SQLiteDatabase bd = getReadableDatabase();
-        ContentValues modificacion = new ContentValues();
-        modificacion.put("Comprado",1);
-        String[] argumentos = new String[] {n};
-        bd.update("Campeones", modificacion, "Nombre=?", argumentos);
+    public void comprarCampeon(String n, Context context){
+        SQLiteDatabase bd = getWritableDatabase();
+        String[] arg = {n};
+        Cursor cu = bd.rawQuery("SELECT Comprado FROM Campeones WHERE Nombre=?", arg);
+        cu.moveToNext();
+
+        boolean comprado = false;
+        int bit = cu.getInt(0);
+        if(bit==1){ comprado = true; } // Si bit=0 significa que no está comprado, si bit=1 si está comprado
+        cu.close();
+
+        if(!comprado) {
+            ContentValues modificacion = new ContentValues();
+            modificacion.put("Comprado", 1);
+            String[] argumentos = new String[]{n};
+            bd.update("Campeones", modificacion, "Nombre=?", argumentos);
+            bd.close();
+        }
+        else{
+            Toast.makeText(context, "Ya tienes este campeon en tu propiedad", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void resetear(){
+        SQLiteDatabase bd = getWritableDatabase();
+        bd.execSQL("DELETE FROM Campeones");
         bd.close();
     }
 }

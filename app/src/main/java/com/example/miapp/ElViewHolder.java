@@ -34,7 +34,7 @@ public class ElViewHolder extends RecyclerView.ViewHolder {
                 String n = eltexto1.getText().toString(); // Conseguir el nombre del campeon comprado
 
                 AdminDB adb = new AdminDB(context, 1);
-                adb.comprarCampeon(n);
+                adb.comprarCampeon(n, context);
                 adb.close();
 
                 /*if (seleccion[getAdapterPosition()]==true){

@@ -16,16 +16,16 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElViewHolder> {
     private ArrayList<String> lasposiciones;
 
     private ArrayList<Integer> lasimagenes;
-    private ArrayList<Integer> losprecios;
+    private ArrayList<String> losprecios;
     private boolean[] seleccionados = {false, false, false, false, false};
     private Context contexto;
-    public ElAdaptadorRecycler (ArrayList<String> nombres, ArrayList<String> posiciones, ArrayList<Integer> imagenes, ArrayList<Integer> precios, Context pcontext)
+    public ElAdaptadorRecycler (ArrayList<String> nombres, ArrayList<String> posiciones, ArrayList<Integer> imagenes, ArrayList<String> precios, Context pcontext)
     {
         losnombres=nombres;
         lasposiciones=posiciones;
         lasimagenes=imagenes;
         losprecios=precios;
-        contexto = pcontext;
+        contexto=pcontext;
     }
 
     public ElViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
