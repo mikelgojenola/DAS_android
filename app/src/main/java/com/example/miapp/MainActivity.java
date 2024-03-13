@@ -3,6 +3,8 @@ package com.example.miapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(findViewById(R.id.labarra));
+
+        AdminDB adb = new AdminDB(this, 1);
+
+        adb.cargarDatos(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

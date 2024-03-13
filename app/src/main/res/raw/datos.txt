@@ -1,0 +1,5 @@
+INSERT INTO Campeones (Nombre, Posicion, Precio, Poder, Comprado) VALUES ('Nasus', 'Top', 50, 10, 0)
+INSERT INTO Campeones (Nombre, Posicion, Precio, Poder, Comprado) VALUES ('Maokai', 'Jungla', 50, 10, 0)
+INSERT INTO Campeones (Nombre, Posicion, Precio, Poder, Comprado) VALUES ('Ahri', 'Mid', 50, 10, 0)
+INSERT INTO Campeones (Nombre, Posicion, Precio, Poder, Comprado) VALUES ('Vayne', 'Adc', 50, 10, 0)
+INSERT INTO Campeones (Nombre, Posicion, Precio, Poder, Comprado) VALUES ('Lulu', 'Support', 50, 10, 0)

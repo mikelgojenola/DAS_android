@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.database.Cursor;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class TiendaActivity extends AppCompatActivity implements DialogoTienda.ListenerdelDialogo{
 
     @Override
@@ -24,17 +27,22 @@ public class TiendaActivity extends AppCompatActivity implements DialogoTienda.L
         RecyclerView lalista= findViewById(R.id.elreciclerview);
 
         // Conseguir los campeones que no están en nuestra propiedad, comprobando el atributo "comprado" en la base de datos
-        Campeon[] campeones = getCampeonesParaVender();
+        AdminDB adb = new AdminDB(this, 1);
+        ArrayList<Campeon> campeones = adb.getCampeonesParaVender();
 
-        int[] personajes= {R.drawable.nasus, R.drawable.maokai, R.drawable.ahri, R.drawable.vayne, R.drawable.lulu};
-        String[] nombres={};
-        String[] posiciones={};
-        int[] precios={};
+        Integer[] listaP = {R.drawable.nasus, R.drawable.maokai, R.drawable.ahri, R.drawable.vayne, R.drawable.lulu};
 
-        for (int i = 0; i<campeones.length; i++){
-            nombres[i] = campeones[i].getNombre();
-            posiciones[i] = campeones[i].getPosicion();
-            precios[i] = campeones[i].getPrecio();
+        ArrayList<Integer> personajes= new ArrayList<Integer>(Arrays.asList(listaP));
+        ArrayList<String> nombres= new ArrayList<String>();
+        ArrayList<String> posiciones= new ArrayList<String>();
+        ArrayList<Integer> precios= new ArrayList<Integer>();
+
+        for (int i = 0; i<campeones.size(); i++){
+            if(!campeones.get(i).estaComprado()) {
+                nombres.add(campeones.get(i).getNombre());
+                posiciones.add(campeones.get(i).getPosicion());
+                precios.add(campeones.get(i).getPrecio());
+            }
         }
 
 
@@ -69,8 +77,6 @@ public class TiendaActivity extends AppCompatActivity implements DialogoTienda.L
         return super.onOptionsItemSelected(item);
     }
 
-
-
     @Override
     public void alpulsarSI() {
 
@@ -83,36 +89,5 @@ public class TiendaActivity extends AppCompatActivity implements DialogoTienda.L
     public void dialogoComprar(){
         DialogFragment dialogoalerta= new DialogoTienda();
         dialogoalerta.show(getSupportFragmentManager(), "dialogComprar");
-    }
-
-    public Campeon[] getCampeonesParaVender(){
-        Campeon[] listaC = {};
-
-        miBD GestorDB = new miBD (this, "NombreBD", null, 1);
-        SQLiteDatabase bd = GestorDB.getReadableDatabase();
-
-        Cursor cu = bd.rawQuery("SELECT Nombre,Posicion,Precio,Poder,Comprado FROM Campeones", null);
-
-        int i = 0;
-        while (cu.moveToNext()) {
-            String nom = cu.getString(0);
-            String pos = cu.getString(1);
-            int precio = cu.getInt(2);
-            int poder = cu.getInt(3);
-
-            boolean comprado = false;
-            int bit = cu.getInt(4);
-            if(bit==1){ comprado = true; } // Si bit=0 significa que no está comprado, si bit=1 si está comprado
-
-            listaC[i] = new Campeon(nom, pos, precio, poder, comprado); //Creamos el campeon con la info de la base de datos
-            i++;
-        }
-
-        Toast.makeText(getApplicationContext(),"Mensaje: " + i,Toast.LENGTH_LONG).show();
-
-        cu.close();
-        bd.close();
-
-        return listaC;
     }
 }
