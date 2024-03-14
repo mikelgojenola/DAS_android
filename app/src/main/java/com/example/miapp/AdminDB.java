@@ -15,8 +15,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class AdminDB extends miBD{
-    public AdminDB(@Nullable Context context, int version) {
+    static AdminDB miadb;
+    private AdminDB(@Nullable Context context, int version) {
         super(context, version);
+    }
+    public static AdminDB getMiADB(Context context, int version){
+        if(miadb == null){
+            miadb = new AdminDB(context,version);
+        }
+        return miadb;
     }
 
     public void cargarDatos(Context context){
@@ -36,6 +43,8 @@ public class AdminDB extends miBD{
         } catch (Exception e){
 
         }
+
+        meterImagenes();
         db.close();
     }
 
@@ -44,9 +53,8 @@ public class AdminDB extends miBD{
 
         SQLiteDatabase bd = getReadableDatabase();
 
-        Cursor cu = bd.rawQuery("SELECT Nombre,Posicion,Precio,Poder,Comprado FROM Campeones", null);
+        Cursor cu = bd.rawQuery("SELECT DISTINCT Nombre,Posicion,Precio,Poder,Comprado,img FROM Campeones", null);
 
-        int i = 0;
         while (cu.moveToNext()) {
             String nom = cu.getString(0);
             String pos = cu.getString(1);
@@ -57,8 +65,9 @@ public class AdminDB extends miBD{
             int bit = cu.getInt(4);
             if(bit==1){ comprado = true; } // Si bit=0 significa que no está comprado, si bit=1 si está comprado
 
-            listaC.add(new Campeon(nom, pos, precio, poder, comprado)); //Creamos el campeon con la info de la base de datos
-            i++;
+            int img = cu.getInt(5);
+
+            listaC.add(new Campeon(nom, pos, precio, poder, comprado, img)); //Creamos el campeon con la info de la base de datos
         }
 
         cu.close();
@@ -83,11 +92,47 @@ public class AdminDB extends miBD{
             modificacion.put("Comprado", 1);
             String[] argumentos = new String[]{n};
             bd.update("Campeones", modificacion, "Nombre=?", argumentos);
-            bd.close();
         }
-        else{
-            Toast.makeText(context, "Ya tienes este campeon en tu propiedad", Toast.LENGTH_SHORT).show();
+        bd.close();
+    }
+
+    public boolean estaComprado(String n, Context context){
+        boolean comprado = false;
+        SQLiteDatabase bd = getWritableDatabase();
+        String[] arg = {n};
+        Cursor cu = bd.rawQuery("SELECT Comprado FROM Campeones WHERE Nombre=?", arg);
+        cu.moveToNext();
+
+        int bit = cu.getInt(0);
+        if(bit==1){ comprado = true; } // Si bit=0 significa que no está comprado, si bit=1 si está comprado
+        cu.close();
+
+        if(!comprado) {
+            ContentValues modificacion = new ContentValues();
+            modificacion.put("Comprado", 1);
+            String[] argumentos = new String[]{n};
+            bd.update("Campeones", modificacion, "Nombre=?", argumentos);
         }
+        bd.close();
+
+        return comprado;
+    }
+
+    private void meterImagenes(){
+        meterImagen(R.drawable.nasus, "Nasus");
+        meterImagen(R.drawable.maokai, "Maokai");
+        meterImagen(R.drawable.ahri, "Ahri");
+        meterImagen(R.drawable.vayne, "Vayne");
+        meterImagen(R.drawable.lulu, "Lulu");
+    }
+
+    private void meterImagen(Integer img, String nombre){
+        SQLiteDatabase db = getWritableDatabase();
+
+        Object[] arg = {img, nombre};
+        db.execSQL("UPDATE Campeones SET img=? WHERE Nombre=?", arg);
+
+        db.close();
     }
 
     public void resetear(){

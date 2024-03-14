@@ -41,4 +41,8 @@ public class DialogoTienda extends DialogFragment {
 
         return builder.create();
     }
+
+    public void setListener(ListenerdelDialogo listener) {
+        this.miListener = listener;
+    }
 }

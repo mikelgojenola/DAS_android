@@ -1,19 +1,16 @@
 package com.example.miapp;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ElViewHolder extends RecyclerView.ViewHolder {
+    private interfazCV interfazCV;
     public TextView eltexto1;
     public TextView eltexto2;
 
@@ -25,29 +22,16 @@ public class ElViewHolder extends RecyclerView.ViewHolder {
         eltexto1 = itemView.findViewById(R.id.textView_nombre);
         eltexto2 = itemView.findViewById(R.id.textView_pos);
         laimagen = itemView.findViewById(R.id.imageView_tienda);
-        elprecio = itemView.findViewById(R.id.button_comprar);
+        elprecio = itemView.findViewById(R.id.botonPrecio);
         elprecio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 elprecio.setText("COMPRADO");
-
-                String n = eltexto1.getText().toString(); // Conseguir el nombre del campeon comprado
-
-                AdminDB adb = new AdminDB(context, 1);
-                adb.comprarCampeon(n, context);
-                adb.close();
-
-                /*if (seleccion[getAdapterPosition()]==true){
-                    seleccion[getAdapterPosition()]=false;
-                    laimagen.setColorFilter(null);
+                if(interfazCV != null){
+                    int posicion = getAdapterPosition();
+                    interfazCV.pasarInfo(posicion);
                 }
-                else{
-                    seleccion[getAdapterPosition()]=true;
-                    laimagen.setColorFilter(Color.BLACK);
-                }*/
             }
         });
-
-
     }
 }

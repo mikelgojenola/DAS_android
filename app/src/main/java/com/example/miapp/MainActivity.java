@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(findViewById(R.id.labarra));
 
-        AdminDB adb = new AdminDB(this, 1);
+        AdminDB adb = AdminDB.getMiADB(this, 1);
 
         adb.cargarDatos(this);
     }

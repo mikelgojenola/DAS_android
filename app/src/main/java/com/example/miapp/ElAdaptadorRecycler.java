@@ -1,17 +1,19 @@
 package com.example.miapp;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElViewHolder> {
+public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElAdaptadorRecycler.ElViewHolder> {
     private ArrayList<String> losnombres;
     private ArrayList<String> lasposiciones;
 
@@ -19,16 +21,26 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElViewHolder> {
     private ArrayList<String> losprecios;
     private boolean[] seleccionados = {false, false, false, false, false};
     private Context contexto;
-    public ElAdaptadorRecycler (ArrayList<String> nombres, ArrayList<String> posiciones, ArrayList<Integer> imagenes, ArrayList<String> precios, Context pcontext)
+    private View.OnClickListener onButtonClickListener;
+    private final interfazCV interfazCV;
+    public ElAdaptadorRecycler (ArrayList<String> nombres, ArrayList<String> posiciones, ArrayList<Integer> imagenes, ArrayList<String> precios, Context pcontext, interfazCV pinterfaz)
     {
         losnombres=nombres;
         lasposiciones=posiciones;
         lasimagenes=imagenes;
         losprecios=precios;
         contexto=pcontext;
+        interfazCV=pinterfaz;
     }
 
-    public ElViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    // Método para establecer el Listener desde fuera del adaptador
+    public void setOnButtonClickListener(View.OnClickListener listener) {
+        this.onButtonClickListener = listener;
+    }
+
+    @Override
+    @NonNull
+    public ElAdaptadorRecycler.ElViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View elLayoutDeCadaItem= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_tienda,null);
         ElViewHolder evh = new ElViewHolder(elLayoutDeCadaItem, contexto);
         evh.seleccion = seleccionados;
@@ -48,8 +60,33 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElViewHolder> {
         return losnombres.size();
     }
 
-    /*public void eliminarElemento(int posicion) {
-        elementos.remove(posicion);
-        notifyItemRemoved(posicion);
-    }*/
+    public class ElViewHolder extends RecyclerView.ViewHolder {
+        public TextView eltexto1;
+        public TextView eltexto2;
+        public ImageView laimagen;
+        public Button elprecio;
+        public boolean[] seleccion;
+        public ElViewHolder(@NonNull View itemView, Context context) {
+            super(itemView);
+            eltexto1 = itemView.findViewById(R.id.textView_nombre);
+            eltexto2 = itemView.findViewById(R.id.textView_pos);
+            laimagen = itemView.findViewById(R.id.imageView_tienda);
+            elprecio = itemView.findViewById(R.id.botonPrecio);
+            elprecio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    elprecio.setText("COMPRADO");
+
+                    String n = eltexto1.getText().toString(); // Conseguir el nombre del campeon comprado
+
+                    if(interfazCV != null) {
+                        int posicion = getAdapterPosition();
+                        interfazCV.pasarInfo(posicion);
+                    }
+                }
+            });
+        }
+    }
+
+
 }

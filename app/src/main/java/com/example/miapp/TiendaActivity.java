@@ -16,7 +16,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TiendaActivity extends AppCompatActivity implements DialogoTienda.ListenerdelDialogo{
+public class TiendaActivity extends AppCompatActivity implements interfazCV{
+    ArrayList<Integer> personajes;
+    ArrayList<String> nombres;
+    ArrayList<String> posiciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +31,21 @@ public class TiendaActivity extends AppCompatActivity implements DialogoTienda.L
         RecyclerView lalista= findViewById(R.id.elreciclerview);
 
         // Conseguir los campeones que no están en nuestra propiedad, comprobando el atributo "comprado" en la base de datos
-        AdminDB adb = new AdminDB(this, 1);
+        AdminDB adb = AdminDB.getMiADB(this,1);
         ArrayList<Campeon> campeones = adb.getCampeonesParaVender();
 
-        Integer[] listaP = {R.drawable.nasus, R.drawable.maokai, R.drawable.ahri, R.drawable.vayne, R.drawable.lulu};
+        //Integer[] listaP = {R.drawable.nasus, R.drawable.maokai, R.drawable.ahri, R.drawable.vayne, R.drawable.lulu};
 
-        ArrayList<Integer> personajes= new ArrayList<Integer>(Arrays.asList(listaP));
-        ArrayList<String> nombres= new ArrayList<String>();
-        ArrayList<String> posiciones= new ArrayList<String>();
+        personajes= new ArrayList<Integer>();
+        nombres= new ArrayList<String>();
+        posiciones= new ArrayList<String>();
         ArrayList<String> precios= new ArrayList<String>();
 
 
         for (int i = 0; i<campeones.size(); i++){
             nombres.add(campeones.get(i).getNombre());
             posiciones.add(campeones.get(i).getPosicion());
+            personajes.add(campeones.get(i).getImg());
             if(!campeones.get(i).estaComprado()) {
                 precios.add(String.valueOf(campeones.get(i).getPrecio()));
             }
@@ -54,9 +58,18 @@ public class TiendaActivity extends AppCompatActivity implements DialogoTienda.L
         LinearLayoutManager elLayoutLineal= new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         lalista.setLayoutManager(elLayoutLineal);
 
-        ElAdaptadorRecycler eladaptador = new ElAdaptadorRecycler(nombres, posiciones, personajes, precios, this);
+        ElAdaptadorRecycler eladaptador = new ElAdaptadorRecycler(nombres, posiciones, personajes, precios, this, this);
         lalista.setAdapter(eladaptador);
 
+    }
+
+    public void pasarInfo(int position){
+        Intent i = new Intent(this, CampeonInfo.class);
+        i.putExtra("imagen", personajes.get(position));
+        i.putExtra("nombre", nombres.get(position));
+        i.putExtra("posicion", posiciones.get(position));
+        startActivity(i);
+        finish();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,34 +81,21 @@ public class TiendaActivity extends AppCompatActivity implements DialogoTienda.L
     public boolean onOptionsItemSelected(MenuItem item) {
         int id=item.getItemId();
         if(id == R.id.opcion_col){
-
+            finish();
         }
         else if(id == R.id.opcion_menu){
             Intent i = new Intent (this, MainActivity.class);
             /*i.putExtra("nombre1",valor);
             i.putExtra("nombre2", valor2);*/
             startActivity(i);
+            finish();
         }
         else if(id == R.id.opcion_pers){
-
+            finish();
         }
         else if(id == R.id.opcion_plantilla){
-
+            finish();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void alpulsarSI() {
-
-    }
-    @Override
-    public void alpulsarNO() {
-
-    }
-
-    public void dialogoComprar(){
-        DialogFragment dialogoalerta= new DialogoTienda();
-        dialogoalerta.show(getSupportFragmentManager(), "dialogComprar");
     }
 }
