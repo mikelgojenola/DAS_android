@@ -13,10 +13,11 @@ public class miBD extends SQLiteOpenHelper {
     public miBD(@Nullable Context context, int version) {
         super(context,nombredb, null, version);
         this.contexto = context;
+        resetearBaseDeDatos();
     }
 
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE Campeones ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Nombre' VARCHAR(255) NOT NULL UNIQUE, 'Posicion' VARCHAR(255), 'Precio' INTEGER, 'Poder' INTEGER, 'Comprado' BOOLEAN, 'img' INTEGER)");
+        sqLiteDatabase.execSQL("CREATE TABLE Campeones ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Nombre' VARCHAR(255) NOT NULL UNIQUE, 'Descripcion' TEXT, 'Posicion' VARCHAR(255), 'Precio' INTEGER, 'Poder' INTEGER, 'Comprado' BOOLEAN, 'img' INTEGER)");
     }
 
     @Override

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElAdaptadorRecycler.ElViewHolder> {
     private ArrayList<String> losnombres;
+    private ArrayList<String> lasdescripciones;
     private ArrayList<String> lasposiciones;
 
     private ArrayList<Integer> lasimagenes;
@@ -23,9 +24,10 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElAdaptadorRecycle
     private Context contexto;
     private View.OnClickListener onButtonClickListener;
     private final interfazCV interfazCV;
-    public ElAdaptadorRecycler (ArrayList<String> nombres, ArrayList<String> posiciones, ArrayList<Integer> imagenes, ArrayList<String> precios, Context pcontext, interfazCV pinterfaz)
+    public ElAdaptadorRecycler (ArrayList<String> nombres, ArrayList<String> descripciones, ArrayList<String> posiciones, ArrayList<Integer> imagenes, ArrayList<String> precios, Context pcontext, interfazCV pinterfaz)
     {
         losnombres=nombres;
+        lasdescripciones=descripciones;
         lasposiciones=posiciones;
         lasimagenes=imagenes;
         losprecios=precios;

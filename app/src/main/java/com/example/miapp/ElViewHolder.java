@@ -26,7 +26,7 @@ public class ElViewHolder extends RecyclerView.ViewHolder {
         elprecio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                elprecio.setText("COMPRADO");
+                //elprecio.setText("COMPRADO");
                 if(interfazCV != null){
                     int posicion = getAdapterPosition();
                     interfazCV.pasarInfo(posicion);

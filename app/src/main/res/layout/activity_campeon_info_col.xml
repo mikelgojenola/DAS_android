@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CampeonInfoTienda">
+    tools:context=".CampeonInfoCol">
+
+    <TextView
+        android:id="@+id/tvNombreTienda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="76dp"
+        android:text="TextView"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ivFotoTienda"
@@ -16,45 +27,34 @@
         app:layout_constraintTop_toBottomOf="@+id/tvNombreTienda"
         app:srcCompat="@drawable/ahri" />
 
-    <Button
-        android:id="@+id/botonComprar"
-        android:layout_width="96dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="52dp"
-        android:text="Comprar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPosTienda" />
-
     <TextView
         android:id="@+id/tvPosTienda"
-        android:layout_width="78dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="286dp"
+        android:layout_height="213dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="52dp"
         android:maxLines="6"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivFotoTienda" />
 
-    <TextView
-        android:id="@+id/tvNombreTienda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="72dp"
-        android:text="TextView"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/botonatrasTienda"
         android:layout_width="94dp"
         android:layout_height="52dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="40dp"
         android:text="Volver"
-        app:layout_constraintStart_toEndOf="@+id/botonComprar"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPosTienda" />
+
+    <TextView
+        android:id="@+id/tvPosCol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tvPosTienda"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFotoTienda" />
 </androidx.constraintlayout.widget.ConstraintLayout>

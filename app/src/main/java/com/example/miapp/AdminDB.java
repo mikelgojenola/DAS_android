@@ -53,21 +53,22 @@ public class AdminDB extends miBD{
 
         SQLiteDatabase bd = getReadableDatabase();
 
-        Cursor cu = bd.rawQuery("SELECT DISTINCT Nombre,Posicion,Precio,Poder,Comprado,img FROM Campeones", null);
+        Cursor cu = bd.rawQuery("SELECT DISTINCT Nombre,Descripcion,Posicion,Precio,Poder,Comprado,img FROM Campeones", null);
 
         while (cu.moveToNext()) {
             String nom = cu.getString(0);
-            String pos = cu.getString(1);
-            int precio = cu.getInt(2);
-            int poder = cu.getInt(3);
+            String des = cu.getString(1);
+            String pos = cu.getString(2);
+            int precio = cu.getInt(3);
+            int poder = cu.getInt(4);
 
             boolean comprado = false;
-            int bit = cu.getInt(4);
+            int bit = cu.getInt(5);
             if(bit==1){ comprado = true; } // Si bit=0 significa que no está comprado, si bit=1 si está comprado
 
-            int img = cu.getInt(5);
+            int img = cu.getInt(6);
 
-            listaC.add(new Campeon(nom, pos, precio, poder, comprado, img)); //Creamos el campeon con la info de la base de datos
+            listaC.add(new Campeon(nom, des, pos, precio, poder, comprado, img)); //Creamos el campeon con la info de la base de datos
         }
 
         cu.close();
@@ -107,12 +108,12 @@ public class AdminDB extends miBD{
         if(bit==1){ comprado = true; } // Si bit=0 significa que no está comprado, si bit=1 si está comprado
         cu.close();
 
-        if(!comprado) {
+        /*if(!comprado) {
             ContentValues modificacion = new ContentValues();
             modificacion.put("Comprado", 1);
             String[] argumentos = new String[]{n};
             bd.update("Campeones", modificacion, "Nombre=?", argumentos);
-        }
+        }*/
         bd.close();
 
         return comprado;
@@ -124,6 +125,9 @@ public class AdminDB extends miBD{
         meterImagen(R.drawable.ahri, "Ahri");
         meterImagen(R.drawable.vayne, "Vayne");
         meterImagen(R.drawable.lulu, "Lulu");
+        meterImagen(R.drawable.kayle, "Kayle");
+        meterImagen(R.drawable.shaco, "Shaco");
+
     }
 
     private void meterImagen(Integer img, String nombre){
