@@ -20,13 +20,15 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="211dp"
-        android:layout_height="263dp"
-        android:layout_marginStart="260dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="493dp"
+        android:layout_height="262dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitulo"
-        app:srcCompat="@drawable/foto_menu" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/imgportada" />
 
     <Button
         android:id="@+id/button"
@@ -35,18 +37,20 @@
         android:layout_marginTop="96dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/labarra" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/boton_pagina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="76dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
@@ -54,8 +58,9 @@
         android:layout_width="227dp"
         android:layout_height="34dp"
         android:layout_marginStart="252dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labarra" />
 
