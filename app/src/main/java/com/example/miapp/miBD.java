@@ -13,7 +13,6 @@ public class miBD extends SQLiteOpenHelper {
     public miBD(@Nullable Context context, int version) {
         super(context,nombredb, null, version);
         this.contexto = context;
-        resetearBaseDeDatos();
     }
 
     public void onCreate(SQLiteDatabase sqLiteDatabase) {

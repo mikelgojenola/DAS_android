@@ -26,7 +26,6 @@ public class TiendaActivity extends AppCompatActivity implements interfazCV{
 
         RecyclerView lalista= findViewById(R.id.elreciclerview);
 
-        // Conseguir los campeones que no están en nuestra propiedad, comprobando el atributo "comprado" en la base de datos
         AdminDB adb = AdminDB.getMiADB(this,1);
         ArrayList<Campeon> campeones = adb.getCampeonesParaVender();
 
@@ -80,6 +79,8 @@ public class TiendaActivity extends AppCompatActivity implements interfazCV{
     public boolean onOptionsItemSelected(MenuItem item) {
         int id=item.getItemId();
         if(id == R.id.opcion_col){
+            Intent i = new Intent (this, ColeccionActivity.class);
+            startActivity(i);
             finish();
         }
         else if(id == R.id.opcion_menu){
@@ -87,9 +88,6 @@ public class TiendaActivity extends AppCompatActivity implements interfazCV{
             /*i.putExtra("nombre1",valor);
             i.putExtra("nombre2", valor2);*/
             startActivity(i);
-            finish();
-        }
-        else if(id == R.id.opcion_pers){
             finish();
         }
         else if(id == R.id.opcion_plantilla){

@@ -32,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id=item.getItemId();
         if(id == R.id.opcion_col){
-
+            Intent i = new Intent (this, ColeccionActivity.class);
+            /*i.putExtra("nombre1",valor);
+            i.putExtra("nombre2", valor2);*/
+            startActivity(i);
         }
         else if(id == R.id.opcion_tienda){
             Intent i = new Intent (this, TiendaActivity.class);
             /*i.putExtra("nombre1",valor);
             i.putExtra("nombre2", valor2);*/
             startActivity(i);
-        }
-        else if(id == R.id.opcion_pers){
-
         }
         else if(id == R.id.opcion_plantilla){
 

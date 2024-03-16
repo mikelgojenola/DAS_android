@@ -22,7 +22,6 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElAdaptadorRecycle
     private ArrayList<String> losprecios;
     private boolean[] seleccionados = {false, false, false, false, false};
     private Context contexto;
-    private View.OnClickListener onButtonClickListener;
     private final interfazCV interfazCV;
     public ElAdaptadorRecycler (ArrayList<String> nombres, ArrayList<String> descripciones, ArrayList<String> posiciones, ArrayList<Integer> imagenes, ArrayList<String> precios, Context pcontext, interfazCV pinterfaz)
     {
@@ -33,11 +32,6 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElAdaptadorRecycle
         losprecios=precios;
         contexto=pcontext;
         interfazCV=pinterfaz;
-    }
-
-    // Método para establecer el Listener desde fuera del adaptador
-    public void setOnButtonClickListener(View.OnClickListener listener) {
-        this.onButtonClickListener = listener;
     }
 
     @Override
@@ -77,10 +71,6 @@ public class ElAdaptadorRecycler extends RecyclerView.Adapter<ElAdaptadorRecycle
             elprecio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    elprecio.setText("COMPRADO");
-
-                    String n = eltexto1.getText().toString(); // Conseguir el nombre del campeon comprado
-
                     if(interfazCV != null) {
                         int posicion = getAdapterPosition();
                         interfazCV.pasarInfo(posicion);

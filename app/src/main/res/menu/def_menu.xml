@@ -20,12 +20,6 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/opcion_pers"
-        android:icon="@android:drawable/btn_star_big_on"
-        android:title="Personalizar"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/opcion_menu"
         android:icon="@android:drawable/btn_star_big_on"
         android:title="Menú principal"

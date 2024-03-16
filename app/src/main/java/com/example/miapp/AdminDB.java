@@ -16,10 +16,12 @@ import java.util.ArrayList;
 
 public class AdminDB extends miBD{
     static AdminDB miadb;
+    private static Context contexto;
     private AdminDB(@Nullable Context context, int version) {
         super(context, version);
     }
     public static AdminDB getMiADB(Context context, int version){
+        contexto = context;
         if(miadb == null){
             miadb = new AdminDB(context,version);
         }
@@ -54,6 +56,35 @@ public class AdminDB extends miBD{
         SQLiteDatabase bd = getReadableDatabase();
 
         Cursor cu = bd.rawQuery("SELECT DISTINCT Nombre,Descripcion,Posicion,Precio,Poder,Comprado,img FROM Campeones", null);
+
+        while (cu.moveToNext()) {
+            String nom = cu.getString(0);
+            String des = cu.getString(1);
+            String pos = cu.getString(2);
+            int precio = cu.getInt(3);
+            int poder = cu.getInt(4);
+
+            boolean comprado = false;
+            int bit = cu.getInt(5);
+            if(bit==1){ comprado = true; } // Si bit=0 significa que no está comprado, si bit=1 si está comprado
+
+            int img = cu.getInt(6);
+
+            listaC.add(new Campeon(nom, des, pos, precio, poder, comprado, img)); //Creamos el campeon con la info de la base de datos
+        }
+
+        cu.close();
+        bd.close();
+
+        return listaC;
+    }
+
+    public ArrayList<Campeon> getCampeonesColeccion(){
+        ArrayList<Campeon> listaC = new ArrayList<>();
+
+        SQLiteDatabase bd = getReadableDatabase();
+
+        Cursor cu = bd.rawQuery("SELECT DISTINCT Nombre,Descripcion,Posicion,Precio,Poder,Comprado,img FROM Campeones WHERE Comprado=1", null);
 
         while (cu.moveToNext()) {
             String nom = cu.getString(0);
@@ -127,7 +158,19 @@ public class AdminDB extends miBD{
         meterImagen(R.drawable.lulu, "Lulu");
         meterImagen(R.drawable.kayle, "Kayle");
         meterImagen(R.drawable.shaco, "Shaco");
-
+        meterImagen(R.drawable.azir, "Azir");
+        meterImagen(R.drawable.zeri, "Zeri");
+        meterImagen(R.drawable.janna, "Janna");
+        meterImagen(R.drawable.teemo, "Teemo");
+        meterImagen(R.drawable.viego, "Viego");
+        meterImagen(R.drawable.jinx, "Jinx");
+        meterImagen(R.drawable.yone, "Yone");
+        meterImagen(R.drawable.leona, "Leona");
+        meterImagen(R.drawable.renekton, "Renekton");
+        meterImagen(R.drawable.kindred, "Kindred");
+        meterImagen(R.drawable.cassiopeia, "Cassiopeia");
+        meterImagen(R.drawable.caitlyn, "Caitlyn");
+        meterImagen(R.drawable.blitzcrank, "Blitzcrank");
     }
 
     private void meterImagen(Integer img, String nombre){
@@ -143,5 +186,9 @@ public class AdminDB extends miBD{
         SQLiteDatabase bd = getWritableDatabase();
         bd.execSQL("DELETE FROM Campeones");
         bd.close();
+    }
+
+    public void resetearBD(){
+        contexto.deleteDatabase(getDatabaseName());
     }
 }
