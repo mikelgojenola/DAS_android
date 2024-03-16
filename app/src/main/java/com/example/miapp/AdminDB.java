@@ -45,8 +45,8 @@ public class AdminDB extends miBD{
         } catch (Exception e){
 
         }
-
         meterImagenes();
+
         db.close();
     }
 
@@ -125,6 +125,12 @@ public class AdminDB extends miBD{
             String[] argumentos = new String[]{n};
             bd.update("Campeones", modificacion, "Nombre=?", argumentos);
         }
+
+        int dinero = getDinero() - 50;
+        String[] arg2 = {String.valueOf(dinero)};
+        bd = getWritableDatabase();
+        bd.execSQL("UPDATE Usuario SET Dinero=?", arg2);
+
         bd.close();
     }
 
@@ -139,15 +145,32 @@ public class AdminDB extends miBD{
         if(bit==1){ comprado = true; } // Si bit=0 significa que no está comprado, si bit=1 si está comprado
         cu.close();
 
-        /*if(!comprado) {
-            ContentValues modificacion = new ContentValues();
-            modificacion.put("Comprado", 1);
-            String[] argumentos = new String[]{n};
-            bd.update("Campeones", modificacion, "Nombre=?", argumentos);
-        }*/
         bd.close();
 
         return comprado;
+    }
+
+    public boolean puedeComprar(){
+        int dinero = getDinero();
+        if(dinero>=50){
+            return true;
+        }
+        else return false;
+    }
+
+    public int getDinero(){
+        int dinero = 0;
+
+        SQLiteDatabase bd = getWritableDatabase();
+        Cursor cu = bd.rawQuery("SELECT Dinero FROM Usuario", null);
+        cu.moveToNext();
+
+        dinero = cu.getInt(0);
+        cu.close();
+
+        bd.close();
+
+        return dinero;
     }
 
     private void meterImagenes(){

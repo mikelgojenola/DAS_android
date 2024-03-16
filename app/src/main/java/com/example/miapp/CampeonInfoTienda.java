@@ -40,7 +40,10 @@ public class CampeonInfoTienda extends AppCompatActivity implements DialogoTiend
                 if(adb.estaComprado(nombre, getApplicationContext())){
                     Toast.makeText(getApplicationContext(), "Ya tienes este campeon en tu propiedad", Toast.LENGTH_SHORT).show();
                 }
-                else {
+                else if(!adb.puedeComprar()) {
+                    Toast.makeText(getApplicationContext(), "No tienes suficiente dinero", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     DialogoTienda dialogoalerta = new DialogoTienda();
                     dialogoalerta.show(getSupportFragmentManager(), "dialogComprar");
                 }

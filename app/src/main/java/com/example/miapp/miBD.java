@@ -17,6 +17,8 @@ public class miBD extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE Campeones ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Nombre' VARCHAR(255) NOT NULL UNIQUE, 'Descripcion' TEXT, 'Posicion' VARCHAR(255), 'Precio' INTEGER, 'Poder' INTEGER, 'Comprado' BOOLEAN, 'img' INTEGER)");
+        sqLiteDatabase.execSQL("CREATE TABLE Usuario ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Dinero' INTEGER NOT NULL)");
+
     }
 
     @Override

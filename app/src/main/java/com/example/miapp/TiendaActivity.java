@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -28,8 +29,6 @@ public class TiendaActivity extends AppCompatActivity implements interfazCV{
 
         AdminDB adb = AdminDB.getMiADB(this,1);
         ArrayList<Campeon> campeones = adb.getCampeonesParaVender();
-
-        //Integer[] listaP = {R.drawable.nasus, R.drawable.maokai, R.drawable.ahri, R.drawable.vayne, R.drawable.lulu};
 
         personajes= new ArrayList<Integer>();
         descripciones= new ArrayList<String>();
@@ -57,6 +56,9 @@ public class TiendaActivity extends AppCompatActivity implements interfazCV{
 
         ElAdaptadorRecycler eladaptador = new ElAdaptadorRecycler(nombres, descripciones, posiciones, personajes, precios, this, this);
         lalista.setAdapter(eladaptador);
+
+        TextView dineros = findViewById(R.id.textView_dinero);
+        dineros.setText(String.valueOf(adb.getDinero()));
 
     }
 

@@ -1,3 +1,4 @@
+INSERT INTO Usuario (Dinero) VALUES (250)
 INSERT INTO Campeones (Nombre, Descripcion, Posicion, Precio, Poder, Comprado) VALUES ('Nasus', 'Nasus es un imponente ser Ascendido con cabeza de chacal procedente de la antigua Shurima; una figura heroica a la que las gentes del desierto han encumbrado al nivel de semidiós.', 'Top', 50, 10, 0)
 INSERT INTO Campeones (Nombre, Descripcion, Posicion, Precio, Poder, Comprado) VALUES ('Maokai', 'Maokai es un imponente y feroz treant que lucha contra los horrores antinaturales de las Islas de la Sombra.', 'Jungla', 50, 10, 0)
 INSERT INTO Campeones (Nombre, Descripcion, Posicion, Precio, Poder, Comprado) VALUES ('Ahri', 'Ahri es una raposa vastaya conectada de forma innata a la magia del reino de los espíritus. Es capaz de manipular las emociones de su presa antes de consumir su esencia, proceso que le transmite los recuerdos de cada alma que consume.', 'Mid', 50, 10, 0)
