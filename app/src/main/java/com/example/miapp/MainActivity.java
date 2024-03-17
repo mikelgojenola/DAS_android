@@ -127,5 +127,4 @@ public class MainActivity extends AppCompatActivity {
         elManager.notify(1, elBuilder.build());
     }
 
-
 }

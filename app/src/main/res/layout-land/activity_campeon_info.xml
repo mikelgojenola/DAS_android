@@ -23,12 +23,14 @@
         android:id="@+id/botonComprar"
         android:layout_width="96dp"
         android:layout_height="52dp"
-        android:layout_marginStart="168dp"
+        android:layout_marginStart="100dp"
         android:text="Comprar"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivFotoTienda"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivFotoTienda"
-        app:layout_constraintVertical_bias="0.295" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
 
     <TextView
         android:id="@+id/tvPosTienda"
@@ -49,6 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="TextView"
         android:textSize="34sp"
         android:theme="@style/estiloTitulo"
@@ -61,12 +64,11 @@
         android:id="@+id/botonatrasTienda"
         android:layout_width="94dp"
         android:layout_height="52dp"
-        android:layout_marginStart="40dp"
         android:text="Volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toEndOf="@+id/botonComprar"
-        app:layout_constraintTop_toBottomOf="@+id/ivFotoTienda"
-        app:layout_constraintVertical_bias="0.295" />
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toEndOf="@+id/ivFotoTienda"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
 </androidx.constraintlayout.widget.ConstraintLayout>

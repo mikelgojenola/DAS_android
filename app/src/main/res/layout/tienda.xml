@@ -19,10 +19,11 @@
 
     <TextView
         android:id="@+id/textView_dinero"
-        android:layout_width="109dp"
-        android:layout_height="33dp"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
         android:text="Dinero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -31,13 +32,14 @@
 
     <TextView
         android:id="@+id/textView_titulo_tienda"
-        android:layout_width="266dp"
-        android:layout_height="57dp"
+        android:layout_width="261dp"
+        android:layout_height="37dp"
         android:layout_marginTop="4dp"
         android:text="Tienda"
-        android:textSize="24sp"
+        android:textSize="20sp"
+        android:theme="@style/estiloPrincipal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labarra_tienda" />
 
@@ -45,6 +47,7 @@
         android:id="@+id/elreciclerview"
         android:layout_width="409dp"
         android:layout_height="612dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_titulo_tienda" />
