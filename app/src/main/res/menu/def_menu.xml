@@ -3,25 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/opcion_col"
-        android:icon="@android:drawable/btn_star_big_on"
+        android:icon="@drawable/tesoro"
         android:title="Colección"
         app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/opcion_tienda"
-        android:icon="@android:drawable/btn_star_big_on"
         android:title="Tienda"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/opcion_plantilla"
-        android:icon="@android:drawable/btn_star_big_on"
-        android:title="Plantilla"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/opcion_menu"
-        android:icon="@android:drawable/btn_star_big_on"
         android:title="Menú principal"
         app:showAsAction="never" />
 </menu>

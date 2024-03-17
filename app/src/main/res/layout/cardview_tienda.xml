@@ -60,6 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="40dp"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/estiloBotonMorado"
                 android:text="Precio"
                 app:layout_constraintStart_toEndOf="@+id/textView_nombre"
                 app:layout_constraintTop_toTopOf="parent" />

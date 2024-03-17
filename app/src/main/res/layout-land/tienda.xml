@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/estiloBarra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,13 +21,11 @@
         android:id="@+id/textView_dinero"
         android:layout_width="100dp"
         android:layout_height="25dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
-        android:gravity="center"
+        android:layout_marginEnd="10dp"
+        android:gravity="start"
         android:text="Dinero"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.921"
-        app:layout_constraintStart_toEndOf="@+id/textView_titulo_tienda"
         app:layout_constraintTop_toBottomOf="@+id/labarra_tienda" />
 
     <TextView
@@ -52,4 +50,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_titulo_tienda"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/ivCoins"
+        android:layout_width="38dp"
+        android:layout_height="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/elreciclerview"
+        app:layout_constraintEnd_toStartOf="@+id/textView_dinero"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_titulo_tienda"
+        app:layout_constraintTop_toBottomOf="@+id/labarra_tienda"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/coins" />
 </androidx.constraintlayout.widget.ConstraintLayout>

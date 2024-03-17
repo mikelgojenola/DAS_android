@@ -12,22 +12,19 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/estiloBarra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_dinero"
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
+        android:layout_width="82dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="4dp"
+        android:gravity="start"
         android:text="Dinero"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView_titulo_tienda"
         app:layout_constraintTop_toBottomOf="@+id/labarra_tienda" />
 
     <TextView
@@ -45,10 +42,23 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/elreciclerview"
-        android:layout_width="409dp"
-        android:layout_height="612dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_titulo_tienda" />
+
+    <ImageView
+        android:id="@+id/ivCoins"
+        android:layout_width="41dp"
+        android:layout_height="36dp"
+        android:maxWidth="10dp"
+        android:maxHeight="10dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/textView_dinero"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_titulo_tienda"
+        app:layout_constraintTop_toBottomOf="@+id/labarra_tienda"
+        app:srcCompat="@drawable/coins" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar barra = findViewById(R.id.labarra);
-        barra.setBackgroundColor(Color.MAGENTA);
         setSupportActionBar(barra);
 
         ImageView imagen = findViewById(R.id.imageView2);
@@ -111,9 +110,6 @@ public class MainActivity extends AppCompatActivity {
         else if(id == R.id.opcion_tienda){
             Intent i = new Intent (this, TiendaActivity.class);
             startActivity(i);
-        }
-        else if(id == R.id.opcion_plantilla){
-
         }
         return super.onOptionsItemSelected(item);
     }

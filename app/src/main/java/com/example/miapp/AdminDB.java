@@ -28,6 +28,8 @@ public class AdminDB extends miBD{
         return miadb;
     }
 
+    // ejecuta todas las sentencias sql del archivo de texto "datos.txt", las cuales meten la información de todos
+    // los campeones en la base de datos, e inicializa el dinero del usuario a 250
     public void cargarDatos(Context context){
         SQLiteDatabase db = getWritableDatabase();
         try {
@@ -50,6 +52,7 @@ public class AdminDB extends miBD{
         db.close();
     }
 
+    // recoge todos los campeones de la base de datos para mostrarlos en la actividad de la tienda
     public ArrayList<Campeon> getCampeonesParaVender(){
         ArrayList<Campeon> listaC = new ArrayList<>();
 
@@ -79,6 +82,7 @@ public class AdminDB extends miBD{
         return listaC;
     }
 
+    // Recoge los campeones desbloqueados para mostrarlos en la actividad de la colección
     public ArrayList<Campeon> getCampeonesColeccion(){
         ArrayList<Campeon> listaC = new ArrayList<>();
 
@@ -108,6 +112,7 @@ public class AdminDB extends miBD{
         return listaC;
     }
 
+    //Primero comprueba si el campeón que se quiere comprar está desbloqueado, y si no lo está, lo desbloquea y actualiza la base de datos
     public void comprarCampeon(String n){
         SQLiteDatabase bd = getWritableDatabase();
         String[] arg = {n};
@@ -134,6 +139,7 @@ public class AdminDB extends miBD{
         bd.close();
     }
 
+    // método para sumar 50 monedas cuando se completan los 10 segundos después de pulsar el botón de la actividad principal
     public void sumar50(){
         int dinero = getDinero() + 50;
         Object[] arg2 = {dinero};
@@ -143,6 +149,7 @@ public class AdminDB extends miBD{
         bd.close();
     }
 
+    //comprueba si el personaje está desbloqueado o no
     public boolean estaComprado(String n, Context context){
         boolean comprado = false;
         SQLiteDatabase bd = getWritableDatabase();
@@ -159,6 +166,7 @@ public class AdminDB extends miBD{
         return comprado;
     }
 
+    //devuelve true si puede comprar un campeon y false si no puede (todos los campeones cuestan 50 monedas)
     public boolean puedeComprar(){
         int dinero = getDinero();
         if(dinero>=50){
@@ -167,6 +175,7 @@ public class AdminDB extends miBD{
         else return false;
     }
 
+    //devuelve el dinero actual del usuario
     public int getDinero(){
         int dinero = 0;
 
@@ -182,6 +191,7 @@ public class AdminDB extends miBD{
         return dinero;
     }
 
+    //mete cada imagen al campeón correspondiente
     private void meterImagenes(){
         meterImagen(R.drawable.nasus, "Nasus");
         meterImagen(R.drawable.maokai, "Maokai");
@@ -203,6 +213,11 @@ public class AdminDB extends miBD{
         meterImagen(R.drawable.cassiopeia, "Cassiopeia");
         meterImagen(R.drawable.caitlyn, "Caitlyn");
         meterImagen(R.drawable.blitzcrank, "Blitzcrank");
+        meterImagen(R.drawable.aatrox, "Aatrox");
+        meterImagen(R.drawable.leesin, "Lee Sin");
+        meterImagen(R.drawable.neeko, "Neeko");
+        meterImagen(R.drawable.varus, "Varus");
+        meterImagen(R.drawable.rell, "Rell");
     }
 
     private void meterImagen(Integer img, String nombre){
@@ -212,15 +227,5 @@ public class AdminDB extends miBD{
         db.execSQL("UPDATE Campeones SET img=? WHERE Nombre=?", arg);
 
         db.close();
-    }
-
-    public void resetear(){
-        SQLiteDatabase bd = getWritableDatabase();
-        bd.execSQL("DELETE FROM Campeones");
-        bd.close();
-    }
-
-    public void resetearBD(){
-        contexto.deleteDatabase(getDatabaseName());
     }
 }

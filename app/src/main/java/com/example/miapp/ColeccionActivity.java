@@ -93,9 +93,6 @@ import java.util.ArrayList;
              startActivity(i);
              finish();
          }
-         else if(id == R.id.opcion_plantilla){
-             finish();
-         }
          return super.onOptionsItemSelected(item);
      }
 }

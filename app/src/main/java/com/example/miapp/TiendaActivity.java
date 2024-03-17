@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -60,6 +62,9 @@ public class TiendaActivity extends AppCompatActivity implements interfazCV{
         TextView dineros = findViewById(R.id.textView_dinero);
         dineros.setText(String.valueOf(adb.getDinero()));
 
+        ImageView imgCoin = findViewById(R.id.ivCoins);
+        imgCoin.setImageResource(R.drawable.coins);
+
     }
 
     public void pasarInfo(int position){
@@ -90,9 +95,6 @@ public class TiendaActivity extends AppCompatActivity implements interfazCV{
             /*i.putExtra("nombre1",valor);
             i.putExtra("nombre2", valor2);*/
             startActivity(i);
-            finish();
-        }
-        else if(id == R.id.opcion_plantilla){
             finish();
         }
         return super.onOptionsItemSelected(item);
