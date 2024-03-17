@@ -7,19 +7,19 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.content.pm.PackageManager;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -27,7 +27,10 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
-
+    private Handler handler;
+    private Runnable runnable;
+    private boolean bloqueado = false;
+    private long tiempoParaEjecucion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,38 @@ public class MainActivity extends AppCompatActivity {
             elManager.cancel(id);
         }
 
+        Button actividad = findViewById(R.id.boton_actividad);
+        actividad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(bloqueado){
+                    Toast.makeText(MainActivity.this, "Todavía está en proceso", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    bloqueado = true;
+                    // Inicia la ejecución del Runnable
+                    tiempoParaEjecucion = System.currentTimeMillis() + 12000; // Ejecutar después de 12 segundos (12000 milisegundos)
+                    handler.postDelayed(runnable, 1000); // Empezar a enseñar el tiempo restante cada segundo
+                }
+            }
+        });
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                if(bloqueado) {
+                    long currentTime = System.currentTimeMillis();
+                    long timeRemaining = tiempoParaEjecucion - currentTime;
+
+                    // Actualizar el TextView con el tiempo restante, y comprobar si ya ha pasado el tiempo
+                    actualizarTimer(timeRemaining, actividad);
+
+                    handler.postDelayed(runnable, 1000); // Empezar a enseñar el tiempo restante cada segundo
+                }
+            }
+        };
+
         AdminDB adb = AdminDB.getMiADB(this, 1);
 
         adb.cargarDatos(this);
@@ -81,6 +116,27 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void actualizarTimer(long timeRemaining, Button b) {
+        if (timeRemaining > 0) {
+            long segundos = timeRemaining / 1000;
+            long minutos = segundos / 60;
+
+            segundos = segundos % 60;
+            minutos = minutos % 60;
+
+            String tiempoRestante = String.format("%02d:%02d", minutos, segundos);
+            b.setText(tiempoRestante);
+        } else {
+            // Acción a realizar cuando pase el tiempo que se especifica
+            Toast.makeText(MainActivity.this, "¡Has conseguido 50 monedas!", Toast.LENGTH_SHORT).show();
+            AdminDB adb = AdminDB.getMiADB(getApplicationContext(), 1);
+            adb.sumar50();
+
+            b.setText("Conseguir monedas");
+            bloqueado = false;
+        }
     }
 
     private void createNotification(){

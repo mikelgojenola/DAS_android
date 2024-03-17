@@ -64,7 +64,7 @@ public class CampeonInfoTienda extends AppCompatActivity implements DialogoTiend
     @Override
     public void alpulsarSI() {
         AdminDB adb = AdminDB.getMiADB(this, 1);
-        adb.comprarCampeon(nombre, this);
+        adb.comprarCampeon(nombre);
     }
     @Override
     public void alpulsarNO() {

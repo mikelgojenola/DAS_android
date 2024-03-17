@@ -108,7 +108,7 @@ public class AdminDB extends miBD{
         return listaC;
     }
 
-    public void comprarCampeon(String n, Context context){
+    public void comprarCampeon(String n){
         SQLiteDatabase bd = getWritableDatabase();
         String[] arg = {n};
         Cursor cu = bd.rawQuery("SELECT Comprado FROM Campeones WHERE Nombre=?", arg);
@@ -129,6 +129,15 @@ public class AdminDB extends miBD{
         int dinero = getDinero() - 50;
         String[] arg2 = {String.valueOf(dinero)};
         bd = getWritableDatabase();
+        bd.execSQL("UPDATE Usuario SET Dinero=?", arg2);
+
+        bd.close();
+    }
+
+    public void sumar50(){
+        int dinero = getDinero() + 50;
+        Object[] arg2 = {dinero};
+        SQLiteDatabase bd = getWritableDatabase();
         bd.execSQL("UPDATE Usuario SET Dinero=?", arg2);
 
         bd.close();

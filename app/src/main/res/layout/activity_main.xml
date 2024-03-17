@@ -29,11 +29,11 @@
         app:srcCompat="@drawable/foto_menu" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/boton_actividad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Button"
+        android:text="Conseguir monedas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/boton_actividad"
         app:layout_constraintVertical_bias="0.183" />
 
     <TextView
