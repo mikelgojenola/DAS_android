@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="191dp"
         android:layout_height="204dp"
+        android:background="@color/azul_fondo"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,13 +18,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/morado">
 
-            <TextView
+
+        <TextView
                 android:id="@+id/textView_nombre_col"
                 android:layout_width="82dp"
                 android:layout_height="31dp"
                 android:layout_marginStart="52dp"
+                android:theme="@style/estiloTitulo"
                 android:text="Nombre"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

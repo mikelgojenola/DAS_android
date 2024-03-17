@@ -17,7 +17,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/morado">
 
             <TextView
                 android:id="@+id/textView_pos"
@@ -35,6 +36,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:theme="@style/estiloTitulo"
                 android:text="Nombre"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView_tienda"

@@ -28,6 +28,7 @@ public class TiendaActivity extends AppCompatActivity implements interfazCV{
         setSupportActionBar(findViewById(R.id.labarra_tienda));
 
         RecyclerView lalista= findViewById(R.id.elreciclerview);
+        lalista.setHasFixedSize(true);
 
         AdminDB adb = AdminDB.getMiADB(this,1);
         ArrayList<Campeon> campeones = adb.getCampeonesParaVender();
